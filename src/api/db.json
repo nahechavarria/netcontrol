@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "user": "nielsen",
+      "email": "nielsen.alonso@gmail.com",
+      "password": "mynewpwd402"
+    },
+    {
+      "user": "yumi",
+      "email": "yumi@gmail.com",
+      "password": "yumi123",
+      "repeatPwd": "yumi123",
+      "id": 2
+    }
+  ]
+}

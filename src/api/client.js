@@ -1,10 +1,10 @@
-const url = 'http://localhost:5000/api';
+const url = 'http://localhost:5000';
 
 export const client = async (method, endpoint, payload) => {
 	const options = {
 		method,
 		headers: {
-			'Content-Type': 'application-json',
+			'Content-Type': 'application/json',
 		},
 	};
 
