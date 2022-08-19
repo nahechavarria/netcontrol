@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { useUserCreator } from '../../hooks/useUserCreator';
+import { useUsers } from '../../hooks/useUsers';
 
 import './Register.css';
 
@@ -12,12 +13,13 @@ export const Register = () => {
 		repeatPwd: '',
 	};
 
-	const [user, setUser] = useState(initialValues);
-	const { userCreator, creating, error } = useUserCreator();
+	const [data, setData] = useState(initialValues);
+	const { getUsers } = useUsers();
+	const { userCreator, creating, error } = useUserCreator(getUsers);
 
 	const handleChange = (e) => {
-		setUser({
-			...user,
+		setData({
+			...data,
 			[e.target.name]: e.target.value,
 		});
 	};
@@ -28,16 +30,16 @@ export const Register = () => {
 		if (creating) return alert('Creating');
 		if (error) return alert(error);
 
-		if (!user.user || !user.email || !user.password || !user.repeatPwd)
+		if (!data.user || !data.email || !data.password || !data.repeatPwd)
 			return alert('Missing fields to entry');
 
-		if (user.password !== user.repeatPwd) return alert('Password dont match');
+		if (data.password !== data.repeatPwd) return alert('Password dont match');
 
-		userCreator(user)
+		userCreator(data)
 			.then(() => console.log('User created successfully'))
 			.catch((e) => console.log(e));
 
-		setUser(initialValues);
+		setData(initialValues);
 	};
 
 	return (
@@ -52,7 +54,7 @@ export const Register = () => {
 					name="user"
 					placeholder="Username"
 					tabIndex={1}
-					value={user.user}
+					value={data.user}
 					onChange={handleChange}
 				/>
 				<input
@@ -60,7 +62,7 @@ export const Register = () => {
 					name="email"
 					placeholder="Email"
 					tabIndex={2}
-					value={user.email}
+					value={data.email}
 					onChange={handleChange}
 				/>
 				<input
@@ -68,7 +70,7 @@ export const Register = () => {
 					name="password"
 					placeholder="Password"
 					tabIndex={3}
-					value={user.password}
+					value={data.password}
 					onChange={handleChange}
 				/>
 				<input
@@ -76,7 +78,7 @@ export const Register = () => {
 					name="repeatPwd"
 					placeholder="Repeat Password"
 					tabIndex={4}
-					value={user.repeatPwd}
+					value={data.repeatPwd}
 					onChange={handleChange}
 				/>
 			</div>

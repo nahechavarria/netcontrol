@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { create } from '../api';
 
-export const useUserCreator = () => {
+export const useUserCreator = (reloader) => {
 	const [creating, setCreating] = useState(false);
 	const [error, setError] = useState(null);
 
@@ -12,6 +12,7 @@ export const useUserCreator = () => {
 			await create('users', user);
 			setCreating(false);
 			setError(null);
+			reloader();
 		} catch (error) {
 			setError(error);
 			setCreating(false);
