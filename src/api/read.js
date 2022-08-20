@@ -1,6 +1,6 @@
 import { client } from './client';
 
-export const read = (endpoint, payload) => {
-	const result = client('GET', endpoint, payload);
+export const read = (endpoint) => {
+	const result = client('GET', endpoint);
 	return result;
 };
