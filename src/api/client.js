@@ -12,7 +12,7 @@ export const client = async (method, endpoint, payload) => {
 
 	try {
 		const result = await fetch(`${url}/${endpoint}`, options);
-		return result;
+		return result.json();
 	} catch (error) {
 		throw new Error('Error fetching data with the API');
 	}
