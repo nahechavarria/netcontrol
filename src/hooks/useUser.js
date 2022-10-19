@@ -14,7 +14,7 @@ export const useUser = () => {
 			setUser(saveUser);
 			setLoading(false);
 			setError(null);
-			console.log(saveUser);
+			return saveUser;
 		} catch (error) {
 			setError(error);
 			setLoading(false);
