@@ -6,10 +6,10 @@ export const useUserUpdater = (reloader) => {
 	const [updating, setUpdating] = useState(false);
 	const [error, setError] = useState(null);
 
-	const userUpdater = async (payload) => {
+	const userUpdater = async (id, user) => {
 		try {
 			setUpdating(true);
-			await update('users', payload);
+			await update(`users/${id}`, user);
 			setUpdating(false);
 			setError(null);
 			reloader();
